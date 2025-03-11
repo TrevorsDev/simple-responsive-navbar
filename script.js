@@ -1,16 +1,23 @@
 const hamMenu = document.querySelector('.ham-menu');
 const navLinks = document.querySelector('.nav-links');
 
+// Toggle menu visibility when the hamburger is clicked
 hamMenu.addEventListener('click', (event) => {
-  event.stopPropagation(); // Prevents the click from bubbling up to document
-  hamMenu.classList.toggle('active');
-  navLinks.classList.toggle('active');
+  event.stopPropagation(); // Prevents click from propagating to document
+  const isActive = navLinks.classList.contains('active');
+  if (isActive) {
+    navLinks.classList.remove('active');
+    hamMenu.classList.remove('active');
+  } else {
+    navLinks.classList.add('active');
+    hamMenu.classList.add('active');
+  }
 });
 
-// Close the menu when clicking outside
+// Close the menu if clicking outside of it
 document.addEventListener('click', (event) => {
   if (!navLinks.contains(event.target) && !hamMenu.contains(event.target)) {
-    hamMenu.classList.remove('active');
     navLinks.classList.remove('active');
+    hamMenu.classList.remove('active');
   }
 });
